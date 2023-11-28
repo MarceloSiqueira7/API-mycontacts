@@ -1,9 +1,10 @@
-// Aqui fica toda nossa regra de negócio da aplicação, onde buscamos um registro, editamos, deletamos e etc
+const ContactsRepository = require('../repositories/ContactsRepository')
 
 class ContactController {
   index(request, response) {
     // Listar todos os registros
-    response.send('Hello World!!!!')
+    const contacts = ContactsRepository.findAll()
+    response.json(contacts)
   }
 
   show() {
@@ -22,6 +23,7 @@ class ContactController {
     //Deletar um registro
   }
 }
-//singleton
 module.exports = new ContactController()
 
+//singleton
+// Aqui fica toda nossa regra de negócio da aplicação, onde buscamos um registro, editamos, deletamos e etc
