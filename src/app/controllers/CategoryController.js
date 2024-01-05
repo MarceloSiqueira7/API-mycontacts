@@ -1,8 +1,11 @@
+const CategoryRepository = require('../repositories/CategoryRepository');
+
 class CategoryController {
 
   //Mostrar todas as Categorias
-  index(request, response) {
-    response.send('ok - index');
+  async index(request, response) {
+    const category = await CategoryRepository.findAll();
+    response.json(category);
   };
 
   //Obter uma Categoria
@@ -11,8 +14,15 @@ class CategoryController {
   };
 
   //Criar uma Categoria
-  store(request, response) {
-    response.send('ok - store');
+  async store(request, response) {
+   const { name } = request.body;
+
+    if(!name) {
+      return response.status(400).json({error: 'Name is required!'})
+    };
+
+    const category = await CategoryRepository.create({ name });
+    response.json(category)
   };
 
   //Editar uma Categoria
