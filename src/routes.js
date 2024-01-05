@@ -14,8 +14,9 @@ router.delete('/contacts/:id', ContactController.delete);
 // Rotas de categorias
 router.get('/categories', CategoryController.index); 
 router.get('/categories/:id', CategoryController.show); 
-router.get('/categories', CategoryController.store);
-router.get('/categories/:id', CategoryController.update)
+router.post('/categories', CategoryController.store);
+router.put('/categories/:id', CategoryController.update);
+router.delete('/categories/:id', CategoryController.delete)
 module.exports = router;
 
 
